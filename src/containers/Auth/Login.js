@@ -12,26 +12,65 @@ import adminService from '../../services/adminService';
 class Login extends Component {
     constructor(props) {
         super(props);
-        this.btnLogin = React.createRef();
+        this.state = {
+            username: '',
+            password: ''
+        }
+    }
+
+    handleOnChangeUsername = (event) => {
+        this.setState({
+            username: this.getValueInput(event)
+        })
+    }
+
+    handleOnChangePassword = (event) => {
+        this.setState({
+            password: this.getValueInput(event)
+        })
+    }
+
+    getValueInput = (event) => {
+        return event.target.value
+    }
+
+    handleLogin = () => {
+        console.log(this.state);
     }
 
     render() {
 
         return (
-            <div className='login-background'>
+            <div className='login-background' >
                 <div className='login-container'>
                     <div className='login-content row'>
                         <div className='col-12 text-login'>Login</div>
                         <div className='col-12 form-group login-input'>
                             <label>Username:</label>
-                            <input type='text' className='form-control' placeholder='Enter your username' />
+                            <input
+                                type='text'
+                                className='form-control'
+                                value={this.state.username}
+                                onChange={(event) => this.handleOnChangeUsername(event)}
+                                placeholder='Enter your username' />
                         </div>
                         <div className='col-12 form-group login-input'>
                             <label>Password:</label>
-                            <input type='text' className='form-control' placeholder='Enter your password' />
+                            <div className='custom-input-password'>
+                                <input
+                                    type='text'
+                                    className='form-control'
+                                    value={this.state.password}
+                                    onChange={(event) => this.handleOnChangePassword(event)}
+                                    placeholder='Enter your password' />
+                                <i className='far fa-eye' />
+                            </div>
                         </div>
                         <div className='col-12'>
-                            <button className='btn-login'>Login</button>
+                            <button
+                                className='btn-login'
+                                onClick={() => this.handleLogin()}
+                            >Login</button>
                         </div>
                         <div className='col-12'>
                             <span className='forgot-password'>Forgot your password</span>
