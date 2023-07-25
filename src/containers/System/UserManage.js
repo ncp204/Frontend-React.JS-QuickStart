@@ -3,7 +3,7 @@ import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import './UserManage.scss'
 
-import { getAllUser } from '../../services/userService';
+import { getAllUser, createNewUser } from '../../services/userService';
 import ModalUser from './ModalUser'
 
 class UserManage extends Component {
@@ -24,13 +24,16 @@ class UserManage extends Component {
     }
 
     async componentDidMount() {
+        await this.getAllUsersFromReact();
+    }
+
+    getAllUsersFromReact = async () => {
         let response = await getAllUser('ALL');
         if (response && response.errCode === 0) {
             this.setState({
                 arrUsers: response.users
             })
         }
-
     }
 
     handleAddNewUser = () => {
@@ -43,6 +46,20 @@ class UserManage extends Component {
         this.setState({
             isOpenModalUser: !this.state.isOpenModalUser
         })
+    }
+
+    createNewUser = async (data) => {
+        try {
+            let response = await createNewUser(data)
+            if (response && response.errCode !== 0) {
+                alert(response.message)
+            } else {
+                await this.getAllUsersFromReact();
+                this.toggleUserModal();
+            }
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     render() {
@@ -90,7 +107,7 @@ class UserManage extends Component {
                 <ModalUser
                     isOpen={this.state.isOpenModalUser}
                     toggleFromParent={this.toggleUserModal}
-
+                    createNewUser={this.createNewUser}
                 />
             </div>
         );
