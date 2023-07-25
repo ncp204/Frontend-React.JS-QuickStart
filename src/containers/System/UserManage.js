@@ -3,8 +3,15 @@ import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import './UserManage.scss'
 
-import { getAllUser, createNewUser } from '../../services/userService';
+import { emitter } from '../../utils/emitter';
+
+import {
+    getAllUser,
+    createNewUser,
+    deletUserService
+} from '../../services/userService';
 import ModalUser from './ModalUser'
+import { Button } from 'reactstrap';
 
 class UserManage extends Component {
 
@@ -56,6 +63,20 @@ class UserManage extends Component {
             } else {
                 await this.getAllUsersFromReact();
                 this.toggleUserModal();
+                emitter.emit('EVENT_CLEAR_MODAL_DATA', { id: 'id' })
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    handleDeleteUser = async (user) => {
+        try {
+            let response = await deletUserService(user.id);
+            if (response && response.errCode !== 0) {
+                alert(response.message)
+            } else {
+                await this.getAllUsersFromReact();
             }
         } catch (error) {
             console.log(error);
@@ -93,8 +114,20 @@ class UserManage extends Component {
                                             <td>{user.lastName}</td>
                                             <td>{user.address}</td>
                                             <td>
-                                                <button>Edit</button>
-                                                <button>Delete</button>
+                                                <Button
+                                                    color="warning"
+                                                    className='px-3'
+                                                >
+                                                    Edit
+                                                </Button>
+                                                {' '}
+                                                <Button
+                                                    color="danger"
+                                                    className='px-3'
+                                                    onClick={() => this.handleDeleteUser(user)}
+                                                >
+                                                    Delete
+                                                </Button>
                                             </td>
                                         </tr>
                                     )
