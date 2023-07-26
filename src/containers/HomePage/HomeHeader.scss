@@ -9,7 +9,7 @@
         display: flex;
 
         .left-content {
-            width      : 25%;
+            width      : 20%;
             display    : flex;
             align-items: center;
 
@@ -20,14 +20,15 @@
             }
 
             .header-logo {
-                background: url('../../assets/images/logo.svg') center center no-repeat;
-                width     : 100%;
-                height    : 80%;
+                background : url('../../assets/images/logo.svg') center center no-repeat;
+                width      : 80%;
+                height     : 80%;
+                margin-left: 10px;
             }
         }
 
         .center-content {
-            width          : 50%;
+            width          : 65%;
             display        : flex;
             justify-content: space-between;
             align-items    : center;
@@ -42,10 +43,39 @@
         }
 
         .right-content {
-            width          : 25%;
+            width          : 15%;
             display        : flex;
-            justify-content: center;
+            justify-content: flex-end;
             align-items    : center;
+
+            .support {
+                padding-right: 30px;
+                display      : flex;
+                align-items  : center;
+                cursor       : pointer;
+
+                i {
+                    font-size   : 15px;
+                    margin-right: 5px;
+                }
+            }
+
+            .language-vi {
+                cursor: pointer;
+
+                &.active {
+                    color: orange;
+                }
+            }
+
+            .language-en {
+                cursor: pointer;
+                margin: 0 10px;
+
+                &.active {
+                    color: blue;
+                }
+            }
         }
     }
 }
@@ -60,9 +90,9 @@
     flex-direction     : column;
 
     .content-up {
-        border     : 1px solid red;
-        padding-top: 15px;
-        height     : 50%;
+        background-image: linear-gradient(rgba(126, 126, 126, 0.25), rgba(255, 255, 255, 0.1));
+        padding-top     : 15px;
+        height          : 65%;
 
         .title1 {
             text-align   : center;
@@ -107,16 +137,20 @@
     }
 
     .content-down {
-        .option {
+        height          : 35%;
+        display         : flex;
+        justify-content : center;
+        align-items     : flex-end;
+        background-image: linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 1));
 
+        .option {
             text-align     : center;
             display        : flex;
             gap            : 50px;
-            justify-content: space-evenly;
+            justify-content: center;
 
             .option-child {
-                border: solid 1px red;
-                width : 100px;
+                width: 100px;
 
                 .icon-child {
                     background-color: white;
