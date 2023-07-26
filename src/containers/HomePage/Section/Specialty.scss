@@ -1,0 +1,27 @@
+.section-specialty {
+    height          : 330px;
+    background-color: #f5f5f5;
+    border          : 1px solid red;
+
+    .specialty-content {
+        height: 100%;
+
+        .slick-slider {
+            height  : 100%;
+            position: relative;
+
+            .slick-arrow {
+                position        : absolute;
+                background-color: red;
+            }
+
+            .slick-pre {
+                left: 0;
+            }
+
+            .slick-next {
+                right: 0;
+            }
+        }
+    }
+}
