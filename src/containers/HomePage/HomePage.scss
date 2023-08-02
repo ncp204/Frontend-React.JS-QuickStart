@@ -1,0 +1,28 @@
+.slick-slider {
+    height     : 100%;
+    padding    : 0 20px;
+    position   : relative;
+    display    : flex;
+    align-items: center;
+
+    .slick-arrow {
+        position        : absolute;
+        background-color: rgb(99, 96, 96);
+        height          : 40px;
+        width           : 40px;
+        border-radius   : 50%;
+    }
+
+    .slick-prev {
+        left   : 15px;
+        z-index: 1000;
+    }
+
+    .slick-next {
+        right: 15px;
+    }
+
+    .slick-list {
+        .slick-track {}
+    }
+}

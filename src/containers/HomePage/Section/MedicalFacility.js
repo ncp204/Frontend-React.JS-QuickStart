@@ -11,23 +11,22 @@ import './Specialty.scss';
 import img from '../../../assets/images/specialty/112457-co-xuong-khop.jpg'
 import { Button } from "reactstrap";
 
-class Specialty extends Component {
+class MedicalFacility extends Component {
 
     render() {
-        // let language = this.props.languageState
 
         return (
             <>
                 <div className="section-specialty">
                     <div className="specialty-content">
                         <div className="section-header">
-                            <span className="section-title" >Chuyên khoa phổ biến</span>
+                            <span className="section-title" >Bác sĩ nổi bật</span>
                             <Button className="btn-title" color="primary">Xem thêm</Button>
                         </div>
                         <Slider {...this.props.settings}>
                             <div className="img-customize">
                                 <img src={img} />
-                                <h3>Cơ xương khớp</h3>
+                                <a href="/#">Bác sĩ chuyên khoa II</a>
                             </div>
                             <div className="img-customize">
                                 <img src={img} />
@@ -70,4 +69,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Specialty);
+export default connect(mapStateToProps, mapDispatchToProps)(MedicalFacility);
